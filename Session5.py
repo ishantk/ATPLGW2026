@@ -1,0 +1,16 @@
+# Operators
+# Arithmetic : + - * / ** // %
+cab_fare = 200
+gst_tax = 0.18
+amount_to_pay = cab_fare + cab_fare*gst_tax
+print('amount_to_pay:', amount_to_pay)
+
+number1 = 10
+number2 = 3
+# result = number1 / number2
+# result = number1 // number2
+# result = number1 % number2
+result = number1 ** number2
+print('result:', result)
+
+
