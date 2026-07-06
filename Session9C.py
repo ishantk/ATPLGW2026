@@ -18,19 +18,50 @@ class CircularDoublyLinkedList:
         else:
             self.tail.next_song = element
             self.head.previous_song = element
-            element.previous = self.tail
-            element.next = self.head
+            element.previous_song = self.tail
+            element.next_song = self.head
             self.tail = element
 
-    def show(self):
-        song = self.head
+    def add_in_front(self, element):
+        pass
 
-        while True:
-            song.show_song()
-            song = song.next_song
+    def add_in_between(self, element, element1, element2):
+        pass
 
-            if song == self.head:
-                break
+    def delete_last():
+        pass
+
+    def delete_front():
+        pass
+
+    def delete(element):
+        pass
+
+    def show(self, traverse=True):
+        
+        if traverse == True:
+        
+            song = self.head
+
+            while True:
+                song.show_song()
+                song = song.next_song
+
+                if song == self.head:
+                    break
+        
+        else:
+
+            song = self.tail
+
+            while True:
+                song.show_song()
+                song = song.previous_song
+
+                if song == self.tail:
+                    break
+
+    
 
 
 

@@ -26,4 +26,8 @@ song_list.add(element=Song(title='5. Sitaare',
 
 print(vars(song_list))
 
-song_list.show()
+song_list.show(traverse=False)
+
+
+# Implement the functions in CircularDoublyLinkedList 
+# on some different Object (Flight, ChatMessage etc.. of your choice)
