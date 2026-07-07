@@ -35,9 +35,14 @@ class Vehicle:
         print('~~~~~~~~~~~VEHICLE~~~~~~~~~~~~~')
         print(f'{self.registration_number} | {self.type}') # formatted string
 
+
+        # data = vars(self) # vars(self) -> data of obect in dictionary format
+        print('{registration_number} | {type}'.format_map(vars(self)))
+
         self.fasttag.show()
 
-        print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
+        # print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
+        print('~'*30 +'\n')
 
 
 
