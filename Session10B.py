@@ -72,6 +72,18 @@ def main():
 
     queue.show()
 
+    # After adding Vehcile in Queue, deduc the toll
+    queue.deduct_toll(vehicle1)
+    queue.deduct_toll(vehicle2)
+    queue.deduct_toll(vehicle3)
+    queue.deduct_toll(vehicle4)
+    queue.deduct_toll(vehicle5)
+
+    print(f'Size of Queue is: {queue.size}')
+
+    # Assignment: Write the Logic, if balance is low, highlight the vehcile 
+    # and do not remove from queue
+
 
 if __name__ == '__main__':
     main()

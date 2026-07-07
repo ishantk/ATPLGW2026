@@ -21,13 +21,31 @@ class TollPlazaQueue:
             element.next = self.head
             self.tail = element
 
-    def deduct_toll(self, element):
-        pass
+        print(f'Vehcile Added to Queue. Size {self.size}')
+        element.show()
 
-    def delete(self, element):
+    def deduct_toll(self, element):
+        
+        print(f'FastTag Balance for {element.registration_number} \u20b9{element.fasttag.balance}')        
+        if element.type == '4W':
+            element.fasttag.balance -= 100
+        else:
+            element.fasttag.balance -= 50
+
+        print(f'Toll Deducted')        
+        print(f'New FastTag Balance for {element.registration_number} \u20b9{element.fasttag.balance}')  
+
+        self.delete()
+
+    def delete(self):
         self.size -= 1
         self.head = self.head.next
+        print(f'Vehicle Removed from Queue. Size {self.size}')
 
+    def delete(self):
+        self.size -= 1
+        self.tail = self.tail.previous
+        print(f'Vehicle Removed from Stack. Size {self.size}')
     
     def show(self, traverse=True):
         
