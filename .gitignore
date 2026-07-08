@@ -1,0 +1,15 @@
+# Blocks all common virtual environment directory names and their contents
+.venv/
+
+# Blocks generated Python bytecode and runtime caches
+__pycache__/
+
+# Blocks desktop services and hidden OS database files
+.DS_Store
+.AppleDouble
+Thumbs.db
+ehthumbs.db
+Log.txt
+
+# Blocks local configuration folders for popular editors
+.vscode/
