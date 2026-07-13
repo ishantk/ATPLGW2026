@@ -23,5 +23,12 @@ if st.button('Register'):
     db_helper.select_collection()
     db_helper.save(document_to_save)
 
+    st.success('User Registered Successfully')
+
     # print('User Registered')
     # print(f'{name}, {phone}, {email}, {password}')
+
+# Explore how to create a Form in Streamlit
+# Streamlit success error messages to be printed
+# Check for fields i.e. validation eg password lenght > 6 or email cannot be empty
+# After the succesfull db insertion, navigate to a new Page stating welcome to home
