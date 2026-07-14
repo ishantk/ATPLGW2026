@@ -1,5 +1,7 @@
 import streamlit as st
 import time
+import datetime
+from Session13 import DBHelper
 
 """
 
@@ -18,6 +20,8 @@ Agent4 -> Gives me analysis of what and all has been done
 
 st.set_page_config(page_title='Agentic Chat UI')
 st.subheader('Write a Task to Delegate')
+db_helper = DBHelper()
+db_helper.select_collection(collection_name='tasks')
 
 task_clues = {
     'how to create a task': 'create task: title, description, action(call etc), contact_name, contact_phone',
@@ -68,6 +72,45 @@ if user_input:
                 typing_text += character
                 typing_placeholder.markdown(typing_text)
                 time.sleep(0.01)
+
+    elif 'create task:' in user_input:
+        # save the task in mongodb
+        data1 = user_input.split(':')
+        data2 = data1[1].split(',')
+        task = {
+            'title': data2[0].strip(),
+            'description': data2[1].strip(),
+            'action': data2[2].strip(),
+            'contact_name': data2[3].strip(),
+            'contact_phone': data2[4].strip(),
+            'status': 'PENDING',
+            'created_at': datetime.datetime.now()
+        }
+
+        db_helper.save(task)
+        message = {
+            'role': 'assistant',
+            'text': 'Task Saved Successfully.'
+        }
+        st.session_state.messages.append(message)
+
+        with st.chat_message(message['role']):
+            typing_placeholder = st.empty()
+            typing_text = ''
+            for character in message['text']:
+                typing_text += character
+                typing_placeholder.markdown(typing_text)
+                time.sleep(0.05)
+    
+    elif 'list:' in user_input:
+        documents = db_helper.retrieve()
+        # display all documents by concatenating string using json dumps
+
+    elif 'update:' in user_input:
+        pass
+
+    elif 'delete:' in user_input:
+        pass
 
     else:
 

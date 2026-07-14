@@ -29,7 +29,7 @@ class DBHelper:
         for document in result:
             print(document)
 
-        # return result
+        return result
 
     def update(self, condition=None, document_to_update=None):
         result = self.collection.update_one(
