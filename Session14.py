@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 
 """
 
@@ -31,6 +32,12 @@ task_clues = {
 if 'messages' not in st.session_state:
     st.session_state.messages = []
 
+
+# List all the previous messages stored in list
+for message in st.session_state.messages:
+     with st.chat_message(message['role']):
+        st.markdown(message['text'])
+
 user_input = st.chat_input('Type Your Task here')
 
 if user_input:
@@ -55,7 +62,12 @@ if user_input:
         st.session_state.messages.append(message)
 
         with st.chat_message(message['role']):
-            st.markdown(message['text'])
+            typing_placeholder = st.empty()
+            typing_text = ''
+            for character in message['text']:
+                typing_text += character
+                typing_placeholder.markdown(typing_text)
+                time.sleep(0.01)
 
     else:
 
@@ -66,4 +78,9 @@ if user_input:
         st.session_state.messages.append(message)
 
         with st.chat_message(message['role']):
-            st.markdown(message['text'])
+            typing_placeholder = st.empty()
+            typing_text = ''
+            for character in message['text']:
+                typing_text += character
+                typing_placeholder.markdown(typing_text)
+                time.sleep(0.05)
