@@ -18,6 +18,9 @@ Agent4 -> Gives me analysis of what and all has been done
 
 """
 
+def task_to_string(task):
+    return 'Title: {title}, Description: {description}\n'.format_map(task)
+
 st.set_page_config(page_title='Agentic Chat UI')
 st.subheader('Write a Task to Delegate')
 db_helper = DBHelper()
@@ -100,16 +103,36 @@ if user_input:
             for character in message['text']:
                 typing_text += character
                 typing_placeholder.markdown(typing_text)
-                time.sleep(0.05)
+                time.sleep(0.01)
     
-    elif 'list:' in user_input:
+    elif 'list' in user_input:
         documents = db_helper.retrieve()
+        tasks = ''
+        for document in documents:
+            # print(document)
+            tasks += task_to_string(document)
+            print('tasks:', tasks)
+
         # display all documents by concatenating string using json dumps
 
-    elif 'update:' in user_input:
+        message = {
+            'role': 'assistant',
+            'text': tasks
+        }
+        st.session_state.messages.append(message)
+
+        with st.chat_message(message['role']):
+            typing_placeholder = st.empty()
+            typing_text = ''
+            for character in message['text']:
+                typing_text += character
+                typing_placeholder.markdown(typing_text)
+                time.sleep(0.01)
+
+    elif 'update' in user_input:
         pass
 
-    elif 'delete:' in user_input:
+    elif 'delete' in user_input:
         pass
 
     else:
@@ -126,4 +149,4 @@ if user_input:
             for character in message['text']:
                 typing_text += character
                 typing_placeholder.markdown(typing_text)
-                time.sleep(0.05)
+                time.sleep(0.01)

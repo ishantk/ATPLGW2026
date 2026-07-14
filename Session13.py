@@ -26,8 +26,8 @@ class DBHelper:
         result = self.collection.find(condition)
         print('[DBHelper] Documents Retrieved. result is:', result)
 
-        for document in result:
-            print(document)
+        # for document in result:
+        #     print(document)
 
         return result
 
