@@ -10,6 +10,8 @@ __pycache__/
 Thumbs.db
 ehthumbs.db
 Log.txt
+testapp.py
+testapp2.py
 
 # Blocks local configuration folders for popular editors
 .vscode/
