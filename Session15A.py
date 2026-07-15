@@ -1,5 +1,7 @@
 """
-    Function Tooling in AI
+    Function Tool in AI
+    https://developers.openai.com/api/docs/guides/function-calling
+
 
     Streamlit UI Input: 
     Call gourav on 9872898728 and assign a task to create 3 licenses for finlo for bus ticketing module for Jujhar group
@@ -19,10 +21,16 @@
 
 from Session13 import DBHelper
 import datetime
+import json
+from openai import OpenAI
 
 # DB Initialization
 db_helper = DBHelper()
 db_helper.select_collection(collection_name='tasks')
+
+# OpenAI Initialization
+openai_api_key = ''
+client = OpenAI(api_key=openai_api_key)
 
 # 1. Define a function to perfrom some action
 def save_task(task):
@@ -66,3 +74,38 @@ tools = [
         },
     },
 ]
+
+# 4. Create a running input list we will add to over time
+input_list = [
+    {"role": "user", "content": "Call gourav on 9872898728 and assign a task to create 3 licenses for finlo for bus ticketing module for Jujhar group"}
+]
+
+# Prompt the model with tools defined
+response = client.responses.create(
+    model="gpt-4o-mini",
+    tools=tools,
+    input=input_list,
+)
+
+print("Output:")
+llm_output = response.model_dump_json(indent=2) # string
+# print(llm_output)
+
+llm_output = json.loads(llm_output) # covert to dictionary
+
+
+arguments = json.loads(llm_output['output'][0]['arguments'])
+print('TASK Details')
+print(arguments)
+
+function_name = llm_output['output'][0]['name']
+print('Function Name')
+print(function_name)
+
+type = llm_output['output'][0]['type']
+print('type')
+print(type)
+
+if type == 'function_call':
+     if function_name == 'save_task':
+          save_task(arguments)
