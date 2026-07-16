@@ -12,6 +12,7 @@ ehthumbs.db
 Log.txt
 testapp.py
 testapp2.py
+apikey.txt
 
 # Blocks local configuration folders for popular editors
 .vscode/
