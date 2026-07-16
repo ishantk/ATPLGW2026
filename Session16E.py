@@ -1,0 +1,10 @@
+# Lambdas can be used within
+discount_generator = lambda discount : (lambda price: price - (price*discount/100))
+
+monthly_subcription = discount_generator(10)
+half_yearly_subcription = discount_generator(20)
+yearly_subcription = discount_generator(30)
+
+print(monthly_subcription(1000))
+print(half_yearly_subcription(1000))
+print(yearly_subcription(1000))
